@@ -6,6 +6,7 @@
 // 1. Lets define how we are going to add chords..
 // We going to use three selectors: First chord, second chord, Key Tone. + inversion button.
 
+console.log('i am here')
 const functional_chords = {
     "I": [0,4,7],
     "ii": [2,5,9]
@@ -36,19 +37,19 @@ function transpose(chordIntervals, key) {
     return chordIntervals.map(interval => (interval + keyRoot) % 12);
 }
 
-function generatePolychord(chord1, chord2, key){
-    const base = transpose(functional_chords[chord1],key)
-    const upper = transpose(functional_chords[chord2],key)
+function generatePolychord(base, upper, key){
+    const baseChord = transpose(functional_chords[base],key)
+    const upperChord = transpose(functional_chords[upper],key)
     return polychord = {
-        'base': base,
-        'upper': upper
+        'base': baseChord,
+        'upper': upperChord
     }
      
 }
 function generateChord() {
     const selectedKey = document.getElementById("key").value;
-    const selectedChord1 = document.getElementById("chord1").value;
-    const selectedChord2 = document.getElementById("chord2").value
-    const result = generatePolychord(selectedChord1, selectedChord2, selectedKey);
+    const selectedBase = document.getElementById("base").value;
+    const selectedUpper = document.getElementById("upper").value
+    const result = generatePolychord(selectedBase, selectedUpper, selectedKey);
     console.log(result)
 } 
