@@ -16,8 +16,8 @@
             Visualize aqui possibilidades de poliacordes...
         </h2>
         
-        <select id="key">
-            <!-- Keys... -->
+        <select id="upper">
+            <!-- Chord... -->
             <option value="C">C</option>
             <option value="C#">C#/Db</option>
             <option value="D">D</option>
@@ -33,39 +33,33 @@
           </select>
           
           
-          <select id="upper">
-            <option value="I">I</option>
-            <option value="i">i</option>
-            <option value="II">II</option>
-            <option value="ii">ii</option>
-            <option value="III">III</option>
-            <option value="iii">iii</option>
-            <option value="IV">IV</option>
-            <option value="iv">iv</option>
-            <option value="V">V</option>
-            <option value="v">v</option>
-            <option value="VI">VI</option>
-            <option value="vi">vi</option>
-            <option value="VII">VII</option>
-            <option value="vii">vii</option>
-          </select>
-          <select id="typeUpper">
-            <option></option>
+          <select id="typeupper">
+            <option value="Major">Major</option>
+            <option value="Minor">Minor</option>
           </select>
 
           <select id="base">
-            <option value="I">I</option>
-            <option value="II">II</option>
-            <option value="III">III</option>
-            <option value="IV">IV</option>
-            <option value="V">V</option>
-            <option value="VI">VI</option>
-            <option value="VII">VII</option>
+            <option value="C">C</option>
+            <option value="C#">C#/Db</option>
+            <option value="D">D</option>
+            <option value="D#">D#/Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#/Gb</option>
+            <option value="G">G</option>
+            <option value="G#">G#/Ab</option>
+            <option value="A">A</option>
+            <option value="A">A#/Bb</option>
+            <option value="B">B</option>
             <!-- Other polychords... -->
           </select>
-          <select id="typeBase"></select>
+
+          <select id="typebase">
+            <option value="Major">Major</option>
+            <option value="Minor">Minor</option>
+          </select>
           
-          <button onclick='generateChord()''>Generate Polychord</button>
+          <button onclick='generate()''>Generate Polychord</button>
           <br>
           <br>
           <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">

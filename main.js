@@ -7,11 +7,10 @@
 // We going to use three selectors: First chord, second chord, Key Tone. + inversion button.
 
 console.log('i am here')
-const functional_chords = {
-    "I": [0,4,7],
-    "II": [2,6,9],
-    "III": [4,8,11],
-    "IV": [6,10,13]
+
+const ChordTypes = {
+    "Major": [0,4,7],
+    "Minor": [0,3,7],
 }
 
 const keys ={
@@ -44,10 +43,10 @@ function generatePolychord(base, upper, key){
     }
      
 }
-function generateChord() {
-    const selectedKey = document.getElementById("key").value;
+function generate() {
     const selectedBase = document.getElementById("base").value;
     const selectedUpper = document.getElementById("upper").value
-    const result = generatePolychord(selectedBase, selectedUpper, selectedKey);
+
+    const result = generatePolychord(selectedBase, selectedUpper);
     console.log(result)
 } 
