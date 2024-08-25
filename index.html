@@ -22,19 +22,22 @@
             <!-- Other keys... -->
           </select>
           
-          <select id="chord1">
+          
+          <select id="upper">
             <option value="I">I</option>
             <option value="ii">ii</option>
             <!-- Other polychords... -->
           </select>
+          <select id="typeUpper"></select>
 
-          <select id="chord2">
+          <select id="base">
             <option value="I">I</option>
             <option value="ii">ii</option>
             <!-- Other polychords... -->
           </select>
-
-          <button onclick="generateChord()">Generate Polychord</button>
+          <select id="typeBase"></select>
+          
+          <button onclick='generateChord()''>Generate Polychord</button>
           <br>
           <br>
           <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
@@ -48,11 +51,11 @@
             <rect id="B" x="240" y="0" width="40" height="120" fill="white" stroke="black" />
           
             <!-- Black keys -->
-            <rect id="Csharp" x="25" y="0" width="30" height="80" fill="black" />
-            <rect id="Dsharp" x="65" y="0" width="30" height="80" fill="black" />
-            <rect id="Fsharp" x="145" y="0" width="30" height="80" fill="black" />
-            <rect id="Gsharp" x="185" y="0" width="30" height="80" fill="black" />
-            <rect id="Asharp" x="225" y="0" width="30" height="80" fill="black" />
+            <rect id="C#" x="25" y="0" width="30" height="80" fill="black" />
+            <rect id="D#" x="65" y="0" width="30" height="80" fill="black" />
+            <rect id="F#" x="145" y="0" width="30" height="80" fill="black" />
+            <rect id="G#" x="185" y="0" width="30" height="80" fill="black" />
+            <rect id="A#" x="225" y="0" width="30" height="80" fill="black" />
 
             <!-- White keys 2 -->
             <rect id="C2" x="280" y="0" width="40" height="120" fill="white" stroke="black" />
@@ -64,11 +67,11 @@
             <rect id="B2" x="520" y="0" width="40" height="120" fill="white" stroke="black" />
           
             <!-- Black keys 2 -->
-            <rect id="Csharp2" x="305" y="0" width="30" height="80" fill="black" />
-            <rect id="Dsharp2" x="345" y="0" width="30" height="80" fill="black" />
-            <rect id="Fsharp2" x="425" y="0" width="30" height="80" fill="black" />
-            <rect id="Gsharp2" x="465" y="0" width="30" height="80" fill="black" />
-            <rect id="Asharp2" x="505" y="0" width="30" height="80" fill="black" />
+            <rect id="C#2" x="305" y="0" width="30" height="80" fill="black" />
+            <rect id="D#2" x="345" y="0" width="30" height="80" fill="black" />
+            <rect id="F#2" x="425" y="0" width="30" height="80" fill="black" />
+            <rect id="G#2" x="465" y="0" width="30" height="80" fill="black" />
+            <rect id="A#2" x="505" y="0" width="30" height="80" fill="black" />
           </svg>
 
           <script src="main.js"></script>
