@@ -9,27 +9,23 @@
 console.log('i am here')
 const functional_chords = {
     "I": [0,4,7],
-    "ii": [2,5,9]
-    
+    "II": [2,6,9],
+    "III": [4,8,11],
+    "IV": [6,10,13]
 }
 
 const keys ={
     'C': 0,
     'C#':1,
-    'Db': 1,
     'D': 2,
     'D#': 3,
-    'Eb': 3,
     'E': 4,
     'F': 5,
     'F#': 6,
-    'Gb': 6,
     'G': 7,
     'G#': 8,
-    'Ab': 8,
     'A': 9,
     'A#': 10,
-    'Bb': 10,
     'B': 11
 }
 function transpose(chordIntervals, key) {
@@ -40,6 +36,8 @@ function transpose(chordIntervals, key) {
 function generatePolychord(base, upper, key){
     const baseChord = transpose(functional_chords[base],key)
     const upperChord = transpose(functional_chords[upper],key)
+
+
     return polychord = {
         'base': baseChord,
         'upper': upperChord
