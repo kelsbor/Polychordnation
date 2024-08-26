@@ -11,7 +11,7 @@
 2. Add degrees OK
 3. Add qualities of chords
 4. Add inversions function
-5. Display Everything right on the keyboard.
+5. Display Everything right on the keyboard...
 */
 
 console.log('i am here')
@@ -58,11 +58,36 @@ function generatePolychord(base, upper, key){
         'upper': upperChord
     }
      
+function highlightPolychord(polychord) {
+  
+    // Reset all keys to default color
+    document.querySelectorAll('rect').forEach(key => key.setAttribute('fill', key.id.includes('sharp') ? 'black' : 'white'));
+    
+    const notes = polychord.base
+    // Highlight the keys corresponding to the chord
+    notes.forEach(noteIndex => {
+        const noteName = notes[noteIndex];
+        const keyElement = document.getElementById(noteName); // Get the SVG element by ID
+        if (keyElement) {
+        keyElement.setAttribute('fill', 'blue'); // Change color to blue to indicate it's part of the chord
+        }
+    });
+}
+
+
 }
 function generateChord() {
     const selectedKey = document.getElementById("keys").value;
+
+    //degree and quality of base chord
     const selectedBase = document.getElementById("base").value;
-    const selectedUpper = document.getElementById("upper").value
-    const result = generatePolychord(selectedBase, selectedUpper, selectedKey);
-    console.log(result)
+    const selectedType1 = document.getElementById("typeBase").value;
+
+    //degree and quality of second chord
+    const selectedUpper = document.getElementById("upper").value;
+    const selectedType2 = document.getElementById("typeUpper").value
+
+    const polychord = generatePolychord(selectedBase, selectedUpper, selectedKey);
+    highlightPolychord(polychord)
+    console.log(polychord)
 } 
