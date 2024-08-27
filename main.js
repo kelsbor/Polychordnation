@@ -44,12 +44,27 @@ const keys ={
     'A#': 10,
     'B': 11
 }
+
+const noteNames={
+    0: 'C',
+    1: 'C#',
+    2: 'D',
+    3: 'D#',
+    4: 'E',
+    5: 'F',
+    6: 'F#',
+    7: 'G',
+    8: 'G#',
+    9: 'A',
+    10: 'A#',
+    11: 'B'
+}
 function transpose(chordIntervals, key) {
     const keyRoot = keys[key];
     return chordIntervals.map(interval => (interval + keyRoot) % 12);
 }
 
-function generatePolychord(base, upper, key){
+function generatePolychord(base, upper, key) {
     const baseChord = transpose(functional_chords[base],key)
     const upperChord = transpose(functional_chords[upper],key)
 
@@ -57,25 +72,31 @@ function generatePolychord(base, upper, key){
         'base': baseChord,
         'upper': upperChord
     }
-     
-function highlightPolychord(polychord) {
+
+}
+
+function displayPolychord(polychord) {
   
     // Reset all keys to default color
-    document.querySelectorAll('rect').forEach(key => key.setAttribute('fill', key.id.includes('sharp') ? 'black' : 'white'));
+    document.querySelectorAll('rect').forEach(key => key.setAttribute('fill', key.id.includes('#') ? 'black' : 'white'));
     
     const notes = polychord.base
+    console.log(notes)
+
     // Highlight the keys corresponding to the chord
     notes.forEach(noteIndex => {
-        const noteName = notes[noteIndex];
+        const noteName = noteNames[noteIndex];
+        console.log(noteName)
         const keyElement = document.getElementById(noteName); // Get the SVG element by ID
+        console.log(keyElement)
         if (keyElement) {
-        keyElement.setAttribute('fill', 'blue'); // Change color to blue to indicate it's part of the chord
+            keyElement.setAttribute('fill', 'blue'); // Change color to blue to indicate it's part of the chord
         }
     });
 }
 
 
-}
+
 function generateChord() {
     const selectedKey = document.getElementById("keys").value;
 
@@ -88,6 +109,6 @@ function generateChord() {
     const selectedType2 = document.getElementById("typeUpper").value
 
     const polychord = generatePolychord(selectedBase, selectedUpper, selectedKey);
-    highlightPolychord(polychord)
+    displayPolychord(polychord)
     console.log(polychord)
 } 
