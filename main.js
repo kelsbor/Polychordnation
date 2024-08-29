@@ -1,22 +1,20 @@
-// First we need to define style and user interface (chord input, graphical representation)
 // Different colors for different chords.
-// We are going to store the chords in arrays of numbers.
 // function to generate all possible combinations of chords.
-
-// 1. Lets define how we are going to add chords..
-// We going to use three selectors: First chord, second chord, Key Tone. + inversion button.
 
 /* TODO LIST
 1. Trasponse Function OK
 2. Add degrees OK
-3. Add qualities of chords
+3. Add qualities of chords (Next)
 4. Add inversions function Maybe?
 5. Display Everything right on the keyboard... OK
     5.1 Display upper chord in the keyboard... OK
-6. Use OOP code...
+6. Use OOP code... OK
 */
+
+//Class for Piano Keyboard
 class Piano {
     constructor() {
+        //Each note corresponds to a number in the keyboard (C central is 0)
         this.noteNames={
             0: 'C',
             1: 'C#',
@@ -45,94 +43,105 @@ class Piano {
         }
     }
 
+    //Clean keyboard keys before painting it again
     resetKeys() {
         document.querySelectorAll('rect').forEach(key => 
             key.setAttribute('fill', key.id.includes('#') ? 'black' : 'white'));
     }
 
-    displayNotes(notes) {
+    //Paint keys in the SVG Keyboard
+    displayNotes(polychord) {
         this.resetKeys()
-        const baseNotes = notes.base
-        const upperNotes = notes.upper
+
+        //Get polychord object base and upper chords
+        const baseNotes = polychord.base
+        const upperNotes = polychord.upper
+
         console.log(baseNotes)
 
         // Highlight the keys corresponding to the chord
         baseNotes.forEach(noteIndex => {
-            const noteName = this.noteNames[noteIndex];
+            const noteName = this.noteNames[noteIndex]; //Get the name of each note
             console.log(noteName)
             const keyElement = document.getElementById(noteName); // Get the SVG element by ID
             console.log(keyElement)
             if (keyElement) {
-                keyElement.setAttribute('fill', 'blue'); // Change color to blue to indicate it's part of the chord
+                keyElement.setAttribute('fill', 'blue'); // Change the color of the select note in Piano 
             }
     });
 
-    upperNotes.forEach(noteIndex => {
+    //repeat process for upper chord
+    upperNotes.forEach(noteIndex => { 
         const noteName = this.noteNames[noteIndex];
         console.log(noteIndex)
         const keyElement = document.getElementById(noteName); // Get the SVG element by ID
         console.log(keyElement)
         if (keyElement) {
-            keyElement.setAttribute('fill', 'green'); // Change color to blue to indicate it's part of the chord
+            keyElement.setAttribute('fill', 'green'); // Change the color of the select note in Piano
         }
     });
     }
 }
 
+//create piano object
 const piano = new Piano()
 
-console.log('i am here')
-const functional_chords = {
-    "I": [0,4,7],
-    "bII": [1,5,8],
-    "II": [2,6,9],
-    "bIII": [3,7,10],
-    "III": [4,8,11],
-    "IV": [5,9,12],
-    "bV": [6,10,13],
-    "V": [7,11,14],
-    "bVI": [8,12,15],
-    "VI": [9,13,16],
-    "bVII": [10,14,17],
-    "VII": [11,15,18]
-}
+//Class for Chords
+class Chord {
+    constructor(functionalName, key) {
+        //Equivalent notes for each degree
+        this.functional_chords = {
+            "I": [0,4,7],
+            "bII": [1,5,8],
+            "II": [2,6,9],
+            "bIII": [3,7,10],
+            "III": [4,8,11],
+            "IV": [5,9,12],
+            "bV": [6,10,13],
+            "V": [7,11,14],
+            "bVI": [8,12,15],
+            "VI": [9,13,16],
+            "bVII": [10,14,17],
+            "VII": [11,15,18]
+        }
 
+        //Map the Key name and index
+        this.keys ={
+            'C': 0,
+            'C#':1,
+            'D': 2,
+            'D#': 3,
+            'E': 4,
+            'F': 5,
+            'F#': 6,
+            'G': 7,
+            'G#': 8,
+            'A': 9,
+            'A#': 10,
+            'B': 11
+        }
 
-const keys ={
-    'C': 0,
-    'C#':1,
-    'D': 2,
-    'D#': 3,
-    'E': 4,
-    'F': 5,
-    'F#': 6,
-    'G': 7,
-    'G#': 8,
-    'A': 9,
-    'A#': 10,
-    'B': 11
-}
+        //Selected Key and Function
+        this.functionalName = functionalName;
+        this.key = key;
 
-function transpose(chordIntervals, key) {
-    const keyRoot = keys[key];
-    return chordIntervals.map(interval => (interval + keyRoot) % 12);
-}
-
-function octave(upperChord){
-    return upperChord.map(note => note + 12)
-}
-
-function generatePolychord(base, upper, key) {
-    const baseChord = transpose(functional_chords[base],key)
-    const upperChord = octave(transpose(functional_chords[upper],key))
-
-    return polychord = {
-        'base': baseChord,
-        'upper': upperChord
     }
 
+    transpose(octave) {
+        const keyRoot = this.keys[this.key];
+        return this.functional_chords[this.functionalName].map(note => (note + keyRoot) % 12 + 12*octave);
+    }
 }
 
+//Joint the two chords
+class Polychord {
+    constructor(baseChord, upperChord) {
+        this.base = baseChord
+        this.upper = upperChord
+    }
+}
+
+//Executed when the Generate button is activated
 function generateChord() {
     const selectedKey = document.getElementById("keys").value;
 
@@ -144,7 +153,14 @@ function generateChord() {
     const selectedUpper = document.getElementById("upper").value;
     const selectedType2 = document.getElementById("typeUpper").value
 
-    const polychord = generatePolychord(selectedBase, selectedUpper, selectedKey);
+    //Create two Chord objects
+    const baseChord = new Chord(selectedBase,selectedKey).transpose(0)
+    const upperChord = new Chord(selectedUpper,selectedKey).transpose(1)
+
+    //Create the Polychord object
+    const polychord = new Polychord(baseChord, upperChord)
+
+    //Display notes on Piano
     piano.displayNotes(polychord)
     console.log(polychord)
 } 
