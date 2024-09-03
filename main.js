@@ -88,7 +88,7 @@ const piano = new Piano()
 
 //Class for Chords
 class Chord {
-    constructor(functionalName, key) {
+    constructor(functionalName, chordQuality, key) {
         //Equivalent notes for each degree
         this.functional_chords = {
             "I": [0,4,7],
@@ -121,12 +121,44 @@ class Chord {
             'B': 11
         }
 
-        //Selected Key and Function
+
+        //Selected Key, Function, Quality
         this.functionalName = functionalName;
         this.key = key;
+        this.chordQuality = chordQuality
 
     }
 
+    
+    addQualities() {
+        switch (this.chordQuality) {
+            case 'major':
+                break
+            case 'minor':
+                let change = this.functional_chords[this.functionalName][1] - 1
+                console.log(change)
+                break
+            case 'major7':
+                break
+            case 'minor7':
+                break
+            default:
+        }
+        
+        /*
+        major
+        major7
+        minor
+        minor7
+        minorMaj7
+        Dominant
+        Augmented
+        Dminished
+        Whole Diminished 
+        */
+    }
+    
+   
     transpose(octave) {
         const keyRoot = this.keys[this.key];
         return this.functional_chords[this.functionalName].map(note => (note + keyRoot) % 12 + 12*octave);
@@ -154,8 +186,8 @@ function generateChord() {
     const selectedType2 = document.getElementById("typeUpper").value
 
     //Create two Chord objects
-    const baseChord = new Chord(selectedBase,selectedKey).transpose(0)
-    const upperChord = new Chord(selectedUpper,selectedKey).transpose(1)
+    const baseChord = new Chord(selectedBase,selectedType1, selectedKey).transpose(0)
+    const upperChord = new Chord(selectedUpper, selectedType2, selectedKey).transpose(1)
 
     //Create the Polychord object
     const polychord = new Polychord(baseChord, upperChord)
