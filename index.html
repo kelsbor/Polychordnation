@@ -2,19 +2,19 @@
 <html>
     <head>
         <meta lang="pt-br">
-        <link rel='css' href="styles.css">
+        <link rel='stylesheet' href="styles.css">
         <meta title="Polychordination">
     </head>
     <body>
         <header>
-            <h1>Hello! </h1>
+            <h1>Polychordination</h1>
+            <h3>"Make beautiful polychords..."</h3>
         </header>
-        
-        <h2>
-            Make beautiful polychords...
-        </h2>
-        
-        <select id="keys">
+
+        <!-- Remember naming what each selector means...-->
+
+        <div class="selectors">
+          <select id="keys">
             <!-- Keys... -->
             <option value="C">C</option>
             <option value="C#">C#/Db</option>
@@ -45,6 +45,7 @@
             <option value="bVII">bVII</option>
             <option value="VII">VII</option>
           </select>
+
           <select id="typeUpper">
             <option value="major">Major</option>
             <option value="minor">Minor</option>
@@ -66,6 +67,7 @@
             <option value="bVII">bVII</option>
             <option value="VII">VII</option>
           </select>
+
           <select id="typeBase">
             <option value="major">Major</option>
             <option value="minor">Minor</option>
@@ -74,42 +76,44 @@
           </select>
           
           <button onclick='generateChord()''>Generate Polychord</button>
-          <br>
-          <br>
-          <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
-            <!-- White keys -->
-            <rect id="C" x="0" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="D" x="40" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="E" x="80" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="F" x="120" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="G" x="160" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="A" x="200" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="B" x="240" y="0" width="40" height="120" fill="white" stroke="black" />
+        </div>
+        
+          <div class="keyboard">
+            <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
+              <!-- White keys -->
+              <rect id="C" x="0" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="D" x="40" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="E" x="80" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="F" x="120" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="G" x="160" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="A" x="200" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="B" x="240" y="0" width="40" height="120" fill="white" stroke="black" />
+            
+              <!-- Black keys -->
+              <rect id="C#" x="25" y="0" width="30" height="80" fill="black" />
+              <rect id="D#" x="65" y="0" width="30" height="80" fill="black" />
+              <rect id="F#" x="145" y="0" width="30" height="80" fill="black" />
+              <rect id="G#" x="185" y="0" width="30" height="80" fill="black" />
+              <rect id="A#" x="225" y="0" width="30" height="80" fill="black" />
+  
+              <!-- White keys 2 -->
+              <rect id="C2" x="280" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="D2" x="320" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="E2" x="360" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="F2" x="400" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="G2" x="440" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="A2" x="480" y="0" width="40" height="120" fill="white" stroke="black" />
+              <rect id="B2" x="520" y="0" width="40" height="120" fill="white" stroke="black" />
+            
+              <!-- Black keys 2 -->
+              <rect id="C#2" x="305" y="0" width="30" height="80" fill="black" />
+              <rect id="D#2" x="345" y="0" width="30" height="80" fill="black" />
+              <rect id="F#2" x="425" y="0" width="30" height="80" fill="black" />
+              <rect id="G#2" x="465" y="0" width="30" height="80" fill="black" />
+              <rect id="A#2" x="505" y="0" width="30" height="80" fill="black" />
+            </svg>
+          </div>
           
-            <!-- Black keys -->
-            <rect id="C#" x="25" y="0" width="30" height="80" fill="black" />
-            <rect id="D#" x="65" y="0" width="30" height="80" fill="black" />
-            <rect id="F#" x="145" y="0" width="30" height="80" fill="black" />
-            <rect id="G#" x="185" y="0" width="30" height="80" fill="black" />
-            <rect id="A#" x="225" y="0" width="30" height="80" fill="black" />
-
-            <!-- White keys 2 -->
-            <rect id="C2" x="280" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="D2" x="320" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="E2" x="360" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="F2" x="400" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="G2" x="440" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="A2" x="480" y="0" width="40" height="120" fill="white" stroke="black" />
-            <rect id="B2" x="520" y="0" width="40" height="120" fill="white" stroke="black" />
-          
-            <!-- Black keys 2 -->
-            <rect id="C#2" x="305" y="0" width="30" height="80" fill="black" />
-            <rect id="D#2" x="345" y="0" width="30" height="80" fill="black" />
-            <rect id="F#2" x="425" y="0" width="30" height="80" fill="black" />
-            <rect id="G#2" x="465" y="0" width="30" height="80" fill="black" />
-            <rect id="A#2" x="505" y="0" width="30" height="80" fill="black" />
-          </svg>
-
           <script src="main.js"></script>
     </body>
 </html>

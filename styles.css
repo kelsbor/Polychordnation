@@ -1,0 +1,32 @@
+.keyboard {
+    margin: 20px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: solid;
+    color: aliceblue;
+    font-size: 50px;
+}
+
+h3 {
+    text-decoration: dashed;
+    font-style: italic;
+    color: yellow;
+}
+header {
+    background-color: rgb(192, 66, 66);
+    margin: -10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.selectors {
+    text-align: center;
+    margin: 30px;
+}
+
+body {
+    background-color: whitesmoke;
+}
