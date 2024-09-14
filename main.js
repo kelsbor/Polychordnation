@@ -1,4 +1,3 @@
-// Different colors for different chords.
 // function to generate all possible combinations of chords.
 
 /* TODO LIST
@@ -122,7 +121,7 @@ class Chord {
         }
 
 
-        //Selected Key, Function, Quality
+        //Selected Key, Function, Quality, SelectedChord
         this.functionalName = functionalName
         this.key = key
         this.chordQuality = chordQuality
@@ -134,28 +133,68 @@ class Chord {
     
     addQualities() {
         switch (this.chordQuality) {
+            //Add the logic for each type of chord (adding 7th, +5, 7b, etc)
             case 'major':
                 break
+            
             case 'minor':
                 this.selectedChord[1] = this.selectedChord[1] - 1
                 console.log('Modified chord:', this.selectedChord);
                 break
+
+            case 'diminished':
+                this.selectedChord[1] = this.selectedChord[1] - 1
+                this.selectedChord[2] = this.selectedChord[2] - 1
+                break
+
+            case 'augmented':
+                this.selectedChord[2] = this.selectedChord[2] + 1
+                break
+
             case 'major7':
                 this.selectedChord.push(this.selectedChord[0] + 11)
                 break
-            case 'minor7':
+
+            case 'major7aug':
+                this.selectedChord[2] = this.selectedChord[2] + 1
+                this.selectedChord.push(this.selectedChord[0] + 11)
                 break
+
+            case 'minor7':
+                this.selectedChord[1] = this.selectedChord[1] - 1
+                this.selectedChord.push(this.selectedChord[0] + 10)
+                break
+
+            case 'minormaj7':
+                this.selectedChord[1] = this.selectedChord[1] - 1
+                this.selectedChord.push(this.selectedChord[0] + 11)
+                break
+
+            case 'dom7':
+                this.selectedChord.push(this.selectedChord[0] + 10)
+                break
+
+            case 'dom7aug':
+                this.selectedChord[2] = this.selectedChord[2] + 1
+                this.selectedChord.push(this.selectedChord[0] + 10)
+                break
+            
+            case 'half-diminished':
+                this.selectedChord[1] = this.selectedChord[1] - 1
+                this.selectedChord[2] = this.selectedChord[2] - 1
+                this.selectedChord.push(this.selectedChord[0] + 10)
+                break
+
+            case 'fully-diminished':
+                this.selectedChord[1] = this.selectedChord[1] - 1
+                this.selectedChord[2] = this.selectedChord[2] - 1
+                this.selectedChord.push(this.selectedChord[0] + 9)
+                break
+                
             default:
                 console.error('Unknown chord quality')
         }
         
-        /*
-        minorMaj7
-        Dominant
-        Augmented
-        Dminished
-        Whole Diminished 
-        */
     }
     
    
