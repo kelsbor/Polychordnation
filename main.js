@@ -85,6 +85,30 @@ class Piano {
 //create piano object
 const piano = new Piano()
 
+//Audio Player 
+class AudioPlayer {
+    constructor() {
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    async loadNoteAudio(noteFile) {
+        const response = await fetch(noteFile);
+        const arrayBuffer = await response.arrayBuffer();
+        this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    }
+
+    playSound(pitchShift = 0) {
+        const soundSource = this.audioContext.createBufferSource();
+        soundSource.buffer = this.audioBuffer;
+        
+        // Change pitch using detune (shift in cents)
+        soundSource.detune.value = pitchShift;  // Use cents, 100 cents = 1 semitone
+        
+        soundSource.connect(this.audioContext.destination);
+        soundSource.start(0);
+    }
+}
+
 //Class for Chords
 class Chord {
     constructor(functionalName, chordQuality, key) {
@@ -212,6 +236,42 @@ class Polychord {
     }
 }
 
+async function playChord(polychord, playMode) {
+    const audioPlayer = new AudioPlayer();
+
+    // Load a single audio sample (e.g., C4)
+    await audioPlayer.loadNoteAudio("sounds/C4.mov");
+
+    // Polychord Notes
+    const baseNotes = polychord.base.selectedChord
+    const upperNotes = polychord.upper.selectedChord
+    console.log(playMode)
+
+    if (playMode == 'Chord') {
+        //Note *100 to shift in cents.
+        baseNotes.forEach(note => {
+            audioPlayer.playSound(note*100)
+        });
+
+        upperNotes.forEach(note => {
+            audioPlayer.playSound(note*100)
+        });
+
+    }
+    if (playMode == 'Arpeggio') {
+        let time = 0
+        baseNotes.forEach(note => {
+            setTimeout(() => audioPlayer.playSound(note*100), time*100)
+            time += 1
+        });
+
+        upperNotes.forEach(note => {
+            setTimeout(() => audioPlayer.playSound(note*100), time*100)
+            time += 1
+        });
+    }
+}
+
 //Executed when the Generate button is activated
 function generateChord() {
     const selectedKey = document.getElementById("keys").value;
@@ -228,6 +288,10 @@ function generateChord() {
     const baseChord = new Chord(selectedBase,selectedType1, selectedKey)
     const upperChord = new Chord(selectedUpper, selectedType2, selectedKey)
 
+    //Configs
+    const sound = document.getElementById('sound').checked
+    const playMode = document.querySelector('input[name="playMode"]:checked').value
+
     //Call the methods for each chord
     baseChord.addQualities()
     baseChord.transpose(0)
@@ -236,7 +300,14 @@ function generateChord() {
 
     //Create the Polychord object
     const polychord = new Polychord(baseChord, upperChord)
-    
+
     //Display notes on Piano
     piano.displayNotes(polychord)
+
+    //Play the notes
+    console.log(sound)
+    console.log(playMode)
+    if (sound == true) {
+       playChord(polychord, playMode)
+    }
 } 

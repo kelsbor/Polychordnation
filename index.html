@@ -90,8 +90,16 @@
             <option value="half-diminished">Half-Diminished</option>
             <option value="fully-diminished">Fully-Diminished</option>
           </select>
-          
-          <button onclick='generateChord()''>Generate Polychord</button>
+
+          <p>Play Mode</p>
+          <label for="sound">Sound?</label>
+          <input type="checkbox" id="sound">
+          <label for="chordSound">Chord</label>
+          <input type="radio" name="playMode" id='chordSound' checked value="Chord">
+          <label for="arpeggioSound">Arpeggio</label>
+          <input type="radio" name="playMode" id='arpeggioSound' value="Arpeggio">
+          <p>
+          <button type="submit" onclick='generateChord()''>Generate Polychord</button>
         </div>
         
           <div class="keyboard">
