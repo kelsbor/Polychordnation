@@ -2,8 +2,12 @@
     margin: 20px;
     text-align: center;
     padding: 30px;
+    
 }
 
+.soundcheck {
+    margin-left: 0;
+}
 h1 {
     text-align: center;
     text-decoration: solid;
@@ -14,20 +18,43 @@ h1 {
 h3 {
     text-decoration: dashed;
     font-style: italic;
-    color: yellow;
+    color: rgb(192, 66, 66);
+    font-weight: 900;
 }
 header {
-    background-color: rgb(192, 66, 66);
+    background-color: black;
     margin: -10px;
     text-align: center;
     padding: 10px;
 }
 
 .selectors {
-    text-align: center;
-    margin: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    width: 260px;
+    display: flexbox;
 }
 
 body {
+    background-color: rgb(192, 66, 66);
+}
+
+button {
+    border-radius: 5px;
+    background-color: black;
+    color: whitesmoke;
+    font-weight: 800;
+}
+.chordname {
     background-color: whitesmoke;
+    width: 100px;
+    display: flexbox;
+}
+footer {
+    color: white;
+    text-align: center;
 }

@@ -3,8 +3,8 @@
 /* TODO LIST
 1. Trasponse Function OK
 2. Add degrees OK
-3. Add qualities of chords (Next)
-4. Add inversions function Maybe?
+3. Add qualities of chords (Next) OK
+4. Add inversions function Maybe - Nah
 5. Display Everything right on the keyboard... OK
     5.1 Display upper chord in the keyboard... OK
 6. Use OOP code... OK

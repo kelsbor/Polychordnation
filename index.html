@@ -12,9 +12,46 @@
         </header>
 
         <!-- Remember naming what each selector means...-->
+        <div class="keyboard">
+          <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
+            <!-- White keys -->
+            <rect id="C" x="0" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="D" x="40" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="E" x="80" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="F" x="120" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="G" x="160" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="A" x="200" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="B" x="240" y="0" width="40" height="120" fill="white" stroke="black" />
+          
+            <!-- Black keys -->
+            <rect id="C#" x="25" y="0" width="30" height="80" fill="black" />
+            <rect id="D#" x="65" y="0" width="30" height="80" fill="black" />
+            <rect id="F#" x="145" y="0" width="30" height="80" fill="black" />
+            <rect id="G#" x="185" y="0" width="30" height="80" fill="black" />
+            <rect id="A#" x="225" y="0" width="30" height="80" fill="black" />
+
+            <!-- White keys 2 -->
+            <rect id="C2" x="280" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="D2" x="320" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="E2" x="360" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="F2" x="400" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="G2" x="440" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="A2" x="480" y="0" width="40" height="120" fill="white" stroke="black" />
+            <rect id="B2" x="520" y="0" width="40" height="120" fill="white" stroke="black" />
+          
+            <!-- Black keys 2 -->
+            <rect id="C#2" x="305" y="0" width="30" height="80" fill="black" />
+            <rect id="D#2" x="345" y="0" width="30" height="80" fill="black" />
+            <rect id="F#2" x="425" y="0" width="30" height="80" fill="black" />
+            <rect id="G#2" x="465" y="0" width="30" height="80" fill="black" />
+            <rect id="A#2" x="505" y="0" width="30" height="80" fill="black" />
+          </svg>
+        </div>
 
         <div class="selectors">
           <!-- Keys... -->
+          <h2>Polychord Config</h2>
+          <h3>Key</h3>
           <select id="keys">
             <option value="C">C</option>
             <option value="C#">C#/Db</option>
@@ -30,7 +67,8 @@
             <option value="B">B</option>
           </select>
           
-          
+          <br>
+          <h3>Upper Chord</h3>
           <select id="upper">
             <option value="I">I</option>
             <option value="bII">bII</option>
@@ -60,7 +98,8 @@
             <option value="half-diminished">Half-Diminished</option>
             <option value="fully-diminished">Fully-Diminished</option>
           </select>
-
+          
+          <h3>Base Chord</h3>
           <select id="base">
             <option value="I">I</option>
             <option value="bII">bII</option>
@@ -91,53 +130,20 @@
             <option value="fully-diminished">Fully-Diminished</option>
           </select>
 
-          <p>Play Mode</p>
-          <label for="sound">Sound?</label>
-          <input type="checkbox" id="sound">
+          <h2>Play Mode</h2>
           <label for="chordSound">Chord</label>
           <input type="radio" name="playMode" id='chordSound' checked value="Chord">
           <label for="arpeggioSound">Arpeggio</label>
           <input type="radio" name="playMode" id='arpeggioSound' value="Arpeggio">
-          <p>
+          <p></p>
+          <label for="sound">Sound?</label>
+          <input type="checkbox" id="sound">
           <button type="submit" onclick='generateChord()''>Generate Polychord</button>
         </div>
-        
-          <div class="keyboard">
-            <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
-              <!-- White keys -->
-              <rect id="C" x="0" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="D" x="40" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="E" x="80" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="F" x="120" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="G" x="160" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="A" x="200" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="B" x="240" y="0" width="40" height="120" fill="white" stroke="black" />
-            
-              <!-- Black keys -->
-              <rect id="C#" x="25" y="0" width="30" height="80" fill="black" />
-              <rect id="D#" x="65" y="0" width="30" height="80" fill="black" />
-              <rect id="F#" x="145" y="0" width="30" height="80" fill="black" />
-              <rect id="G#" x="185" y="0" width="30" height="80" fill="black" />
-              <rect id="A#" x="225" y="0" width="30" height="80" fill="black" />
-  
-              <!-- White keys 2 -->
-              <rect id="C2" x="280" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="D2" x="320" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="E2" x="360" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="F2" x="400" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="G2" x="440" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="A2" x="480" y="0" width="40" height="120" fill="white" stroke="black" />
-              <rect id="B2" x="520" y="0" width="40" height="120" fill="white" stroke="black" />
-            
-              <!-- Black keys 2 -->
-              <rect id="C#2" x="305" y="0" width="30" height="80" fill="black" />
-              <rect id="D#2" x="345" y="0" width="30" height="80" fill="black" />
-              <rect id="F#2" x="425" y="0" width="30" height="80" fill="black" />
-              <rect id="G#2" x="465" y="0" width="30" height="80" fill="black" />
-              <rect id="A#2" x="505" y="0" width="30" height="80" fill="black" />
-            </svg>
-          </div>
-          
-          <script src="main.js"></script>
+
+        <div class="chordname"></div>
+      
+        <script src="main.js"></script>
+        <footer>&copy; 2024 Kehsbor. All rights reserved</footer>
     </body>
 </html>
